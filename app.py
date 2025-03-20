@@ -115,4 +115,5 @@ def delete_task(task_id):
     return json.dumps({"message": "Task deleted successfully"}), 200, {"Content-Type": "application/json"}
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Get PORT from Render, default to 5000 locally
+    app.run(host="0.0.0.0", port=port)
