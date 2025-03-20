@@ -1,0 +1,32 @@
+[
+    {
+        "id": "76f6052a-76c2-4e9b-b04f-0f1443359fe8",
+        "description": "Cook Dinner",
+        "due_date": "2025-05-13",
+        "priority": "Medium"
+    },
+    {
+        "id": "81652123-67a1-4879-8973-22b6e4f67bb1",
+        "description": "Christmas Cards",
+        "due_date": "2025-12-01",
+        "priority": "Low"
+    },
+    {
+        "id": "74691d3f-42b1-48a8-a7a7-1ffb1550cffb",
+        "description": "Weed Front Yard",
+        "due_date": "2025-09-16",
+        "priority": "Medium"
+    },
+    {
+        "id": "86f8dfd2-6930-44b1-94fa-507b32d9a32a",
+        "description": "BBQ",
+        "due_date": "2025-08-04",
+        "priority": "Medium"
+    },
+    {
+        "id": "fe6e2ed4-e020-4eac-a9ea-06f0b2d5e556",
+        "description": "Tax Return Due",
+        "due_date": "2025-04-15",
+        "priority": "Medium"
+    }
+]

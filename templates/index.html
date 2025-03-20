@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set the minimum date for the due date input to today
+            let today = new Date().toISOString().split("T")[0];
+            document.getElementById("due_date").setAttribute("min", today);
+            fetchTasks();
+        });
+
+        async function fetchTasks() {
+            const response = await fetch("/tasks");
+            const groupedTasks = await response.json();
+            const taskList = document.getElementById("task-list");
+            taskList.innerHTML = "";
+
+            for (const [monthYear, tasks] of Object.entries(groupedTasks)) {
+                taskList.innerHTML += `<h3 class="month-header">${monthYear}</h3><ul>`;
+
+                tasks.forEach(task => {
+                    let priorityColor = task.priority === "High" ? "high" : 
+                                        task.priority === "Medium" ? "medium" : "low";
+
+                    taskList.innerHTML += `
+                        <li>
+                            <div class="task-left">
+                                <span>${task.due_date.substring(8, 10)} - ${task.description}</span>
+                            </div>
+                            <div class="task-right">
+                                <span class="priority-box ${priorityColor}">${task.priority}</span>
+                                <button class="delete-btn" onclick="deleteTask('${task.id}')">Delete</button>
+                            </div>
+                        </li>
+                    `;
+                });
+
+                taskList.innerHTML += `</ul>`;
+            }
+        }
+
+        async function addTask() {
+            const description = document.getElementById("task").value;
+            const dueDateInput = document.getElementById("due_date").value;
+            const priority = document.getElementById("priority").value;
+
+            if (!description || !dueDateInput) {
+                alert("Please enter a task and due date.");
+                return;
+            }
+
+            let today = new Date().toISOString().split("T")[0];
+            if (dueDateInput < today) {
+                alert("Due date cannot be in the past.");
+                return;
+            }
+
+            const response = await fetch("/tasks", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ description, due_date: dueDateInput, priority }),
+            });
+
+            if (response.ok) {
+                fetchTasks();  
+                document.getElementById("task").value = "";  
+                document.getElementById("due_date").value = "";  
+                document.getElementById("priority").value = "Medium";  
+            } else {
+                alert("Failed to add task. Ensure date format is YYYY-MM-DD.");
+            }
+        }
+
+        async function deleteTask(taskId) {
+            const response = await fetch(`/tasks/${taskId}`, { method: "DELETE" });
+
+            if (response.ok) {
+                fetchTasks();
+            } else {
+                alert("Error deleting task.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">To-Do List</h2>
+        <div class="form-container">
+            <!-- Task Description Field with Increased Height -->
+            <textarea id="task" class="task-input" placeholder="Task Description"></textarea>
+
+            <!-- Date, Priority, and Add Task in the Same Line -->
+            <div class="input-row">
+                <input type="date" id="due_date">
+                <select id="priority">
+                    <option value="High">High</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+                <button class="add-task-btn" onclick="addTask()">Add Task</button>
+            </div>
+        </div>
+        <div id="task-list"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Ignore old text file
+tasks.txt
+
+# Ignore earlier python files
+todo.py
+todo2.py
+todo3.py
+todo4.py
+test.py
+
+# Ignore virtual environments
+.venv/
+venv/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore IDE/editor settings
+.vscode/
+

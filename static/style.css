@@ -1,0 +1,117 @@
+/* 🌟 Center the To-Do List Title */
+.title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 🌟 Restrict Width and Center */
+.container {
+    max-width: 450px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌟 Left-align Month Header */
+.month-header {
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 5px;
+}
+
+/* 🌟 Task List */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* 🌟 Task Item */
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f1f1;
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* 🌟 Task Description */
+.task-left {
+    text-align: left;
+    flex: 1;
+}
+
+/* 🌟 Task Inputs */
+.task-input {
+    width: 100%; /* Now takes the full width of the container */
+    margin-bottom: 10px;
+    height: 50px; /* Keeps it tall */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* 🌟 Date, Priority & Add Button in One Line */
+.input-row {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.input-row input,
+.input-row select,
+.input-row button {
+    flex: 1;
+}
+
+/* 🌟 Priority Dropdown - Matches Height of Calendar & Button */
+.input-row select {
+    height: 50px; /* Matches calendar and button height */
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+/* 🌟 Priority Box */
+.priority-box {
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* 🌟 Delete Button */
+.delete-btn {
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* 🌟 Add Task Button - Now Blue */
+.add-task-btn {
+    background-color: blue; /* Makes it blue */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 50px; /* Matches calendar and dropdown */
+}
+.add-task-btn:hover {
+    background-color: darkblue; /* Darker blue on hover */
+}
